@@ -1,0 +1,95 @@
+{
+    "name": "forme/base",
+    "type": "project",
+    "license": "MIT",
+    "version": "1.0",
+    "description": "Forme base server setup",
+    "homepage": "https://formewp.github.io",
+    "authors": [
+        {
+            "name": "Moussa Clarke",
+            "email": "moussaclarke@gmail.com",
+            "homepage": "https://github.com/moussaclarke"
+        }
+    ],
+    "keywords": [
+        "composer",
+        "wordpress",
+        "wp"
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "composer/installers": "^1.11",
+        "wikimedia/composer-merge-plugin": "^2.0",
+        "wpackagist-plugin/advanced-custom-fields": "^5.9"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5.4",
+        "roave/security-advisories": "dev-master",
+        "symfony/var-dumper": "^5.1",
+        "wpackagist-plugin/debug-bar": "^1.0",
+        "filp/whoops": "^2.9"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-paths": {
+            "pubic/wp-content/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "public/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "public/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "public",
+        "merge-plugin": {
+            "include": [
+                "public/wp-content/plugins/*/composer.json",
+                "public/wp-content/themes/*/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "merge-dev": false
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@install-wordpress",
+            "@configure-wordpress",
+            "@require-autoload",
+            "@init-dot-env"
+        ],
+        "install-wordpress": "scripts/install.sh",
+        "configure-wordpress": "scripts/config.sh",
+        "require-autoload": "scripts/autoload.sh",
+        "init-dot-env": "cp .env.example .env",
+        "setup-wordpress": [
+            "@install-wordpress",
+            "@configure-wordpress",
+            "@require-autoload"
+        ],
+        "post-update-cmd": [
+            "npx lerna bootstrap && npx lerna run build && npx lerna clean --yes"
+        ],
+        "post-install-cmd": [
+            "npx lerna bootstrap && npx lerna run build && npx lerna clean --yes"
+        ]
+    }
+}
