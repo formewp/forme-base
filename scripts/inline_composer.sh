@@ -17,7 +17,12 @@ function inline_script() {
     NEW_CONTENT=`cat $1 | jq -aRs .`
     ESCAPED_CONTENT=$(printf '%s\n' "$NEW_CONTENT" | sed -e 's/[\/&]/\\&/g')
     ESCAPED_FILE=$(printf '%s\n' "$1" | sed -e 's/[\/&]/\\&/g')
+    if sed --version >/dev/null 2>&1; then
+    sed -i "s/\"$ESCAPED_FILE\"/$ESCAPED_CONTENT/g" $COMPOSER_FILE
+    # otherwise this is probably a mac, we need to add '' because of ancient sed
+    else
     sed -i '' "s/\"$ESCAPED_FILE\"/$ESCAPED_CONTENT/g" $COMPOSER_FILE
+    fi
 }
 # replace install
 inline_script "scripts/install.sh"
@@ -31,4 +36,9 @@ ESCAPED_COMMAND=$(printf '%s\n' "$CP_COMMAND" | sed -e 's/[\/&]/\\&/g')
 ENV_EXAMPLE=`cat .env.example`
 NEW_CONTENT=$(echo "touch .env && echo \"$ENV_EXAMPLE\" >> .env" | jq -aRs .)
 ESCAPED_CONTENT=$(printf '%s\n' "$NEW_CONTENT" | sed -e 's/[\/&]/\\&/g')
+# if  sed --version succceds then this is probably a linux system, otherwise use mac syntax
+if sed --version >/dev/null 2>&1; then
+sed -i "s/\"$ESCAPED_COMMAND\"/$ESCAPED_CONTENT/g" $COMPOSER_FILE
+else
 sed -i '' "s/\"$ESCAPED_COMMAND\"/$ESCAPED_CONTENT/g" $COMPOSER_FILE
+fi
