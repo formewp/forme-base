@@ -70,10 +70,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "@install-wordpress",
-            "@configure-wordpress",
-            "@require-autoload",
-            "@init-dot-env"
+            "@setup-wordpress"
         ],
         "install-wordpress": "scripts/install.sh",
         "configure-wordpress": "scripts/config.sh",
@@ -82,7 +79,8 @@
         "setup-wordpress": [
             "@install-wordpress",
             "@configure-wordpress",
-            "@require-autoload"
+            "@require-autoload",
+            "@init-dot-env"
         ],
         "post-update-cmd": [
             "npx lerna bootstrap && npx lerna run build && npx lerna clean --yes"
