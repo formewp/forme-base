@@ -83,10 +83,10 @@
             "@init-dot-env"
         ],
         "post-update-cmd": [
-            "npx lerna bootstrap && npx lerna run build && npx lerna clean --yes"
+            "npx --yes lerna bootstrap && npx --yes lerna run build && npx --yes lerna clean --yes"
         ],
         "post-install-cmd": [
-            "npx lerna bootstrap && npx lerna run build && npx lerna clean --yes"
+            "npx --yes lerna bootstrap && npx --yes lerna run build && npx --yes lerna clean --yes"
         ]
     }
 }
