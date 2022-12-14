@@ -41,7 +41,11 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "wikimedia/composer-merge-plugin": true,
+            "composer/installers": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
