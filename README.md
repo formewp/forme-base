@@ -27,7 +27,7 @@ You can use this for your local development environment or for deployments.
 - composer 2
 - wp cli for the automated configuration and installation
 - wget and/or curl for the automated installation if you don't have wp cli
-- node v16 (preferably via nvm)
+- node v18 (preferably via nvm)
 
 ## Getting Started
 
@@ -82,6 +82,8 @@ On install and update, the `post-install-cmd` and `post-update-cmd` hooks run `n
 ## Lerna
 
 Lerna enables us to install node packages and run asset builds from the server root across all plugins and themes, or more specifically, those whose directory name end with `-plugin` and `-theme` respectively (as is default for Forme), and that have a `package.json` with any necessary npm commands defined.
+
+One thing to bear in mind is that this all runs naively, so if you have some third party plugin or theme installed whose directory name ends in `-plugin` or `-theme` that contains `npm` scripts, they _will_ run, which you might not want. Have a look at `lerna.json` if you need to change the configuration.
 
 `npx lerna bootstrap` will run `npm install` in all matching themes and plugins.
 
