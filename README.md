@@ -23,7 +23,7 @@ You can use this for your local development environment or for deployments.
 ## Requirements
 
 - A Unix machine/VM - Mac or Ubuntu - Windows is not supported. It might work a bit, but who knows.
-- php 8.0 or higher
+- php 8.1 or higher
 - composer 2
 - wp cli for the automated configuration and installation
 - wget and/or curl for the automated installation if you don't have wp cli
