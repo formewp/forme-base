@@ -9,7 +9,12 @@ exit 0
 fi
 if $WPCLI_EXISTS &> /dev/null
 then
-wp core download --path=public
+if [ "$CI" = true ]; then
+  # Add --allow-root flag
+  wp core download --path=public --allow-root
+else
+  wp core download --path=public
+fi
 exit 0
 fi
 echo "Downloading latest version of WordPress from github"
