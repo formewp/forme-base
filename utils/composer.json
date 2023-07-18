@@ -77,6 +77,7 @@
         "require-autoload": "#!/bin/bash\nfile=\"public/wp-config.php\"\npwd=`pwd`\n# if  sed --version succceds then this is probably a linux system\nif sed --version >/dev/null 2>&1; then\nsed -i '/\\/\\* That'\\''s all, stop editing\\! Happy publishing\\. \\*\\//a\\\n\\\nrequire_once FORME_PRIVATE_ROOT.'\"'\"'/vendor/autoload.php'\"'\"';\\\n' $file\n# otherwise this is probably a mac, we need to add '' because of ancient sed\nelse\nsed -i '' '/\\/\\* That'\\''s all, stop editing\\! Happy publishing\\. \\*\\//a\\\n\\\nrequire_once FORME_PRIVATE_ROOT.'\"'\"'/vendor/autoload.php'\"'\"';\\\n' $file\nfi\necho \"Success: Require autoload\"\n",
         "init-dot-env": "touch .env && echo \"# Plugin/theme related env vars can go in here. You should copy everything back to .env.example without secrets in order to maintain your default configuration\" >> .env\n",
         "setup-wordpress": [
+            "npm i",
             "@install-wordpress",
             "@configure-wordpress",
             "@require-autoload",

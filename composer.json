@@ -81,6 +81,7 @@
         "require-autoload": "scripts/autoload.sh",
         "init-dot-env": "cp .env.example .env",
         "setup-wordpress": [
+            "npm i",
             "@install-wordpress",
             "@configure-wordpress",
             "@require-autoload",
