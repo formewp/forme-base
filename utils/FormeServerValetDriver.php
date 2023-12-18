@@ -1,5 +1,9 @@
 <?php
 
+namespace Valet\Drivers\Custom;
+
+use Valet\Drivers\ValetDriver;
+
 class FormeServerValetDriver extends WordPressValetDriver
 {
     /**
@@ -47,7 +51,7 @@ class FormeServerValetDriver extends WordPressValetDriver
     {
         $_SERVER['SERVER_ADDR'] = '127.0.0.1';
         $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
-        
+
         return parent::frontControllerPath($sitePath . self::sitePathSuffix, $siteName, $uri);
     }
 }
