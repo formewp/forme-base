@@ -11,7 +11,7 @@ class FormeServerValetDriver extends WordPressValetDriver
      *
      * @var string
      */
-    const sitePathSuffix = '/public';
+    const SITE_PATH_SUFFIX = '/public';
 
     /**
      * Determine if the driver serves the request.
@@ -23,7 +23,7 @@ class FormeServerValetDriver extends WordPressValetDriver
      */
     public function serves(string $sitePath, string $siteName, string $uri): bool
     {
-        return file_exists($sitePath . self::sitePathSuffix . '/wp-config.php');
+        return file_exists($sitePath . self::SITE_PATH_SUFFIX . '/wp-config.php');
     }
 
     /**
@@ -36,7 +36,7 @@ class FormeServerValetDriver extends WordPressValetDriver
      */
     public function isStaticFile($sitePath, $siteName, $uri)
     {
-        return parent::isStaticFile($sitePath . self::sitePathSuffix, $siteName, $uri);
+        return parent::isStaticFile($sitePath . self::SITE_PATH_SUFFIX, $siteName, $uri);
     }
 
     /**
@@ -52,6 +52,6 @@ class FormeServerValetDriver extends WordPressValetDriver
         $_SERVER['SERVER_ADDR'] = '127.0.0.1';
         $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
 
-        return parent::frontControllerPath($sitePath . self::sitePathSuffix, $siteName, $uri);
+        return parent::frontControllerPath($sitePath . self::SITE_PATH_SUFFIX, $siteName, $uri);
     }
 }
