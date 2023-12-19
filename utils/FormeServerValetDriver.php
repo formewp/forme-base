@@ -2,7 +2,7 @@
 
 namespace Valet\Drivers\Custom;
 
-use Valet\Drivers\ValetDriver;
+use Valet\Drivers\Specific\WordPressValetDriver;
 
 class FormeServerValetDriver extends WordPressValetDriver
 {
@@ -21,7 +21,7 @@ class FormeServerValetDriver extends WordPressValetDriver
      * @param  string  $uri
      * @return bool
      */
-    public function serves($sitePath, $siteName, $uri)
+    public function serves(string $sitePath, string $siteName, string $uri): bool
     {
         return file_exists($sitePath . self::sitePathSuffix . '/wp-config.php');
     }
@@ -47,7 +47,7 @@ class FormeServerValetDriver extends WordPressValetDriver
      * @param  string  $uri
      * @return string
      */
-    public function frontControllerPath($sitePath, $siteName, $uri)
+    public function frontControllerPath(string $sitePath, string $siteName, string $uri): ?string
     {
         $_SERVER['SERVER_ADDR'] = '127.0.0.1';
         $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
