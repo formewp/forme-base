@@ -77,19 +77,17 @@ The following custom scripts are available via composer.
 
 On `create-project` the `post-root-package-install` hook runs `setup-wordpress` and `init-dotenv` (i.e. all of the above)
 
-On install and update, the `post-install-cmd` and `post-update-cmd` hooks run `npx lerna bootstrap && npx lerna run build && npx lerna clean --yes`. You may want to disable this on your local machine, especially if you're not symlinking your development themes and plugins, as it will run on every composer update.
+On install and update, the `post-install-cmd` and `post-update-cmd` hooks run `npm i --omit=dev && npm run build -ws`. You may want to disable this on your local machine, especially if you're not symlinking your development themes and plugins, as it will run on every composer update.
 
-## Lerna
+## Workspaces
 
-Lerna enables us to install node packages and run asset builds from the server root across all plugins and themes, or more specifically, those whose directory name end with `-plugin` and `-theme` respectively (as is default for Forme), and that have a `package.json` with any necessary npm commands defined.
+NPM Workspaces enables us to install node packages and run asset builds from the server root across all plugins and themes, or more specifically, those whose directory name end with `-plugin` and `-theme` respectively (as is default for Forme), and that have a `package.json` with any necessary npm commands defined. The main `node_modules` directory should be in the root repo directory.
 
-One thing to bear in mind is that this all runs naively, so if you have some third party plugin or theme installed whose directory name ends in `-plugin` or `-theme` that contains `npm` scripts, they _will_ run, which you might not want. Have a look at `lerna.json` if you need to change the configuration.
+One thing to bear in mind is that this all runs naively, so if you have some third party plugin or theme installed whose directory name ends in `-plugin` or `-theme` that contains `npm` scripts, they _will_ run, which you might not want. Have a look at `package.json` if you need to change the configuration.
 
-`npx lerna bootstrap` will run `npm install` in all matching themes and plugins.
+`npm install --omit=dev` will run across all matching themes and plugins.
 
-`npx lerna run build` will run `npm run build` runs in all matching themes and plugins.
-
-`npx lerna clean` deletes the node_modules folder in all matching themes and plugins.
+`npm run build -ws` will run `build` in all matching themes and plugins.
 
 These commands should run automatically on composer update/install, but you can also run them directly.
 
