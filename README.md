@@ -16,7 +16,7 @@ The main aims are:
 2. Put WordPress into a `public` web root directory, but otherwise leave the standard WP folder structure exactly as it is.
 3. Use composer to manage WordPress plugins, WordPress themes and general PHP libraries, but NOT WordPress itself beyond the initial installation.
 4. Not a mono repo. It's meant as a starting point for the _root_ part of your WordPress project. Your custom themes and plugins themselves should live in their own separate git repos and eventually be made available for composer via a Packagist or Satis repository.
-5. Leverage Lerna to enable us to build assets across all themes and plugins.
+5. Leverage npm workspaces to enable us to build assets across all themes and plugins.
 
 You can use this for your local development environment or for deployments.
 
@@ -43,7 +43,7 @@ You can run `composer create-project forme/base project-name` to create a new pr
 8. Install WP debug bar
 9. Initialise `wp-config.php`, including prompting for your DB credentials, adding the `FORME_PRIVATE_ROOT` const, setting `WP_ENV` to `development` and requiring autoload. (requires wp cli)
 10. Create a blank `.env` file
-11. Include `lerna` configuration
+11. Include `package.json` including basic workspaces configuration
 
 You will then want to:
 
@@ -81,7 +81,7 @@ On install and update, the `post-install-cmd` and `post-update-cmd` hooks run `n
 
 ## Workspaces
 
-NPM Workspaces enables us to install node packages and run asset builds from the server root across all plugins and themes, or more specifically, those whose directory name end with `-plugin` and `-theme` respectively (as is default for Forme), and that have a `package.json` with any necessary npm commands defined. The main `node_modules` directory should be in the root repo directory.
+[npm Workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces) allow us to install node packages and run asset builds from the server root across all plugins and themes, or more specifically, those whose directory name end with `-plugin` and `-theme` respectively (as is default for Forme), and that have a `package.json` with any necessary npm commands defined. The main `node_modules` directory should be in the root repo directory.
 
 One thing to bear in mind is that this all runs naively, so if you have some third party plugin or theme installed whose directory name ends in `-plugin` or `-theme` that contains `npm` scripts, they _will_ run, which you might not want. Have a look at `package.json` if you need to change the configuration.
 
