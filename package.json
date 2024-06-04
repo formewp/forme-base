@@ -1,7 +1,8 @@
 {
     "name": "forme-base",
     "private": true,
-    "devDependencies": {
-        "lerna": "^6.5.1"
-    }
+    "workspaces": [
+        "public/wp-content/themes/*-theme/**",
+        "public/wp-content/plugins/*-plugin/**"
+    ]
 }

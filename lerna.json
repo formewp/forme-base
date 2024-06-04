@@ -1,7 +1,0 @@
-{
-  "packages": [
-    "public/wp-content/themes/*-theme/**",
-    "public/wp-content/plugins/*-plugin/**"
-  ],
-  "version": "0.0.0"
-}

@@ -81,17 +81,16 @@
         "require-autoload": "scripts/autoload.sh",
         "init-dot-env": "cp .env.example .env",
         "setup-wordpress": [
-            "npm i",
             "@install-wordpress",
             "@configure-wordpress",
             "@require-autoload",
             "@init-dot-env"
         ],
         "post-update-cmd": [
-            "npx --yes lerna bootstrap && npx --yes lerna run build && npx --yes lerna clean --yes"
+            "npm i --omit=dev && npm run build --ws"
         ],
         "post-install-cmd": [
-            "npx --yes lerna bootstrap && npx --yes lerna run build && npx --yes lerna clean --yes"
+            "npm i --omit=dev && npm run build --ws"
         ]
     }
 }
