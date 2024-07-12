@@ -99,6 +99,12 @@ If you use Valet for local development, we've got a driver for that. You should 
 cp utils/FormeServerValetDriver.php ~/.config/valet/Drivers/FormeServerValetDriver.php
 ```
 
+## Wikimedia Merge Plugin
+
+The `wikimedia/composer-merge-plugin` plugin is configured to look for plugins and themes who's directory name ends in `-plugin` and `-theme` respectively. This is currently the default naming pattern for forme plugin and theme projects, but you could change this logic if needed.
+
+It matches naively so even in a forme project, you might want to configure this differently if you happen to be using a plugin or theme whose directory name ends in `-plugin` or `-theme` that you don't want to merge (or you could simply change the directory name to something else)
+
 ## Inlined Composer
 
 If you have an existing vanilla WordPress installation for whatever reason, and you just want to set things up so you can use the Forme framework, or even just to use composer to manage your WordPress project dependencies, you can copy `utils/composer.json` into your project root folder. Again, this is one up from the public web root.

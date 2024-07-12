@@ -60,8 +60,8 @@
         "wordpress-install-dir": "public",
         "merge-plugin": {
             "include": [
-                "public/wp-content/plugins/*/composer.json",
-                "public/wp-content/themes/*/composer.json"
+                "public/wp-content/plugins/*-plugin/composer.json",
+                "public/wp-content/themes/*-theme/composer.json"
             ],
             "recurse": true,
             "replace": false,
