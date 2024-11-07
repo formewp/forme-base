@@ -87,10 +87,10 @@
             "@init-dot-env"
         ],
         "post-update-cmd": [
-            "npm i --omit=dev && npm run build -ws"
+            "npm i --omit=dev && npm run build -ws || true"
         ],
         "post-install-cmd": [
-            "npm i --omit=dev && npm run build -ws"
+            "npm i --omit=dev && npm run build -ws || true"
         ]
     }
 }
