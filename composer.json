@@ -51,7 +51,7 @@
     "prefer-stable": true,
     "extra": {
         "installer-paths": {
-            "pubic/wp-content/mu-plugins/{$name}/": [
+            "public/wp-content/mu-plugins/{$name}/": [
                 "type:wordpress-muplugin"
             ],
             "public/wp-content/plugins/{$name}/": [
